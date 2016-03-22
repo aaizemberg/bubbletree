@@ -27,6 +27,32 @@
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     
+    <div id="button-container">
+      <button class="btn btn-xs btn-default btn-credits" data-toggle="modal" data-target="#credits"><i class="glyphicon glyphicon-info-sign"></i></button>
+    </div>
+
+    <div id="loader-container">
+      Cargando <br/> <img src="images/spin.gif">
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="credits" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <img class="pull-right" src="images/logo.jpeg" width="100" />
+            <p>Periodista: <strong data-bind="periodista"></strong> <strong>| Chequeado</strong></p>
+            <p>Fuente: <strong data-bind="fuente"></strong></p>
+            <p>Visualización: <strong data-bind="developer"></strong></p>
+            <p>Herramientas: <strong data-bind="herramientas"></strong></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-xs" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="bubbletree-wrapper">
       <div class="bubbletree">
 
@@ -50,6 +76,7 @@
     <script src="/bower_components/jquery-migrate/jquery-migrate.js"></script>
     <script src="/bower_components/tabletop/src/tabletop.js"></script>
     <script src="/bower_components/lodash/lodash.js"></script>
+    <script src="/bower_components/transparency/dist/transparency.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     

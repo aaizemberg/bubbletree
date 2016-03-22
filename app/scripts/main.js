@@ -17,8 +17,7 @@ var ChequeadoBubbleTree;
             try {
                 Tabletop.init( { key: key,
                         callback: function(data, tabletop) { ChequeadoBubbleTree.prepareData(data) },
-                        parseNumbers: true,
-                        simpleSheet: true 
+                        parseNumbers: true
                     });
             }
             catch(err) {
@@ -31,7 +30,10 @@ var ChequeadoBubbleTree;
 	};
 
 	ChequeadoBubbleTree.prepareData = function(data){
-		ChequeadoBubbleTree.RAW_DATA = data;
+		console.log(data);
+		ChequeadoBubbleTree.RAW_DATA = data.DATA.elements;
+		
+		$('.modal').render(data.CREDITS.elements[0]);
 
 		var finalData = ChequeadoBubbleTree.RAW_DATA[0];
 
@@ -40,6 +42,7 @@ var ChequeadoBubbleTree;
 		ChequeadoBubbleTree.completeChildren(finalData.children);
 
 		ChequeadoBubbleTree.render(finalData);
+
 	};
 
 	ChequeadoBubbleTree.completeChildren = function(children){
@@ -64,6 +67,12 @@ var ChequeadoBubbleTree;
 			container: '.bubbletree',
 		//	bubbleType: 'icon',
 		});
+
+		setTimeout(function(){
+			$('#loader-container').fadeOut();
+	        $('#button-container').fadeIn();
+	        $('.bubbletree').addClass('loaded');
+		},1500);
 
 
 	};
