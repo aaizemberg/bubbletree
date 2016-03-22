@@ -35,26 +35,6 @@
       Cargando <br/> <img src="images/spin.gif">
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="credits" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-body">
-            <img class="pull-right" src="images/logo.jpeg" width="100" />
-            <p><strong><a href="https://github.com/okfn/bubbletree" target="_blank">Basado en BubbleTree de OKFN</a></strong></p>
-            <p>Periodista: <strong data-bind="periodista"></strong> <strong>| Chequeado</strong></p>
-            <p>Fuente: <strong data-bind="fuente"></strong></p>
-            <p>Datos: <strong><a data-bind="data" target="_blank">En Spreadsheet</a></strong></p>
-            <p>Visualización: <strong data-bind="developer"></strong></p>
-            <p>Herramientas: <strong data-bind="herramientas"></strong></p>
-            <p>Código fuente: <strong><a href="https://github.com/chequeado/bubbletree" target="_blank">En Github</a></strong></p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default btn-xs" data-dismiss="modal">Cerrar</button>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div class="bubbletree-wrapper">
       <div class="bubbletree">
@@ -62,16 +42,6 @@
       </div>
     </div>
     
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-      e.src='https://www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-XXXXX-X');ga('send','pageview');
-    </script>
-
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="/bower_components/jquery/dist/jquery.js"></script>
@@ -118,6 +88,27 @@
         });
         
     </script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="credits" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <img class="pull-right" src="images/logo.jpeg" width="100" />
+            <p><strong><a href="https://github.com/okfn/bubbletree" target="_blank">Basado en BubbleTree de OKFN</a></strong></p>
+            <p>Periodista: <strong data-bind="periodista"></strong> <strong>| Chequeado</strong></p>
+            <p>Fuente: <strong data-bind="fuente"></strong></p>
+            <p>Datos: <strong><a data-bind="data" target="_blank">En Spreadsheet</a></strong></p>
+            <p>Visualización: <strong data-bind="developer"></strong></p>
+            <p>Herramientas: <strong data-bind="herramientas"></strong></p>
+            <p>Código fuente: <strong><a href="https://github.com/chequeado/bubbletree" target="_blank">En Github</a></strong></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-xs" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </body>
 </html>

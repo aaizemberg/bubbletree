@@ -45,7 +45,7 @@ var ChequeadoBubbleTree;
 		  }
 		};
 
-		$('.modal').render(data.RAW_DATA_CREDITS,directives);
+		$('.modal').render(ChequeadoBubbleTree.RAW_DATA_CREDITS,directives);
 
 		var finalData = ChequeadoBubbleTree.RAW_DATA[0];
 
