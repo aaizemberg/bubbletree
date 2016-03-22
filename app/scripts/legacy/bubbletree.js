@@ -1161,11 +1161,11 @@ var BubbleTree = function(config, onHover, onUnHover) {
 				//
 				var hw = me.width * 0.5;
 
+				//FIX !!! http://fedossov.de/bubbltree-js-tutorial-simple-working-example/
 				rad2 = 0 - Math.max(
-					//hw *0.8 - tgtScale * (a2rad(node.parent.amount)+a2rad(node.amount)), // maximum visible part
-					hw * 0.8 - tgtScale * (a2rad(node.parent.amount) + a2rad(Math.max(node.amount*1.15 + node.maxChildAmount*1.15, node.left.amount * 0.85, node.right.amount * 0.85))),
-					tgtScale*a2rad(node.parent.amount)*-1 + hw*0.15 // minimum visible part
-				) + hw;
+				      hw * 0.8 - tgtScale * (a2rad(node.parent.amount) + a2rad(Math.max(node.amount*1.15 + node.maxChildAmount*1.15, (node.left ? node.left.amount : 0) * 0.85, (node.right ? node.right.amount : 0)  * 0.85))),
+				      tgtScale*a2rad(node.parent.amount)*-1 + hw*0.15 // minimum visible part
+				    ) + hw;
 
 				//vis4.log('rad (parent) = '+rad2,'   rad (center) = ',rad1);
 
