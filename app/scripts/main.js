@@ -33,7 +33,18 @@ var ChequeadoBubbleTree;
 		console.log(data);
 		ChequeadoBubbleTree.RAW_DATA = data.DATA.elements;
 		
-		$('.modal').render(data.CREDITS.elements[0]);
+		var directives = {
+		  data: {
+		    href: function(params) {
+		      return this.data;
+		    },
+		    html: function(params) {
+		      return 'En Spreadsheet';
+		    }
+		  }
+		};
+
+		$('.modal').render(data.CREDITS.elements[0],directives);
 
 		var finalData = ChequeadoBubbleTree.RAW_DATA[0];
 
