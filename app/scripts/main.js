@@ -1,6 +1,6 @@
 var ChequeadoBubbleTree;
 
-;(function(global, document, $, _){
+;(function(global, document, $, _, d3){
 
     "use strict";
 
@@ -30,8 +30,9 @@ var ChequeadoBubbleTree;
 	};
 
 	ChequeadoBubbleTree.prepareData = function(data){
-		console.log(data);
+//		console.log(data);
 		ChequeadoBubbleTree.RAW_DATA = data.DATA.elements;
+		ChequeadoBubbleTree.RAW_DATA_CREDITS = data.CREDITS.elements[0];
 		
 		var directives = {
 		  data: {
@@ -44,12 +45,15 @@ var ChequeadoBubbleTree;
 		  }
 		};
 
-		$('.modal').render(data.CREDITS.elements[0],directives);
+		$('.modal').render(data.RAW_DATA_CREDITS,directives);
 
 		var finalData = ChequeadoBubbleTree.RAW_DATA[0];
 
+		finalData.name = 'main-bubble';
+		finalData.taxonomy = 'bubbles';
 		finalData.children = _.filter(ChequeadoBubbleTree.RAW_DATA,{'parent':finalData.id});
-
+		finalData.id = 'main-bubble';
+		
 		ChequeadoBubbleTree.completeChildren(finalData.children);
 
 		ChequeadoBubbleTree.render(finalData);
@@ -59,7 +63,8 @@ var ChequeadoBubbleTree;
 	ChequeadoBubbleTree.completeChildren = function(children){
 
 		_.each(children,function(e){
-			console.log(e.id);
+			e.name = 'normal-bubble';
+			e.taxonomy = 'bubbles';
 			e.children = _.filter(ChequeadoBubbleTree.RAW_DATA,{'parent':e.id});
 			if(e.children.length>0){
 				ChequeadoBubbleTree.completeChildren(e.children);
@@ -69,20 +74,71 @@ var ChequeadoBubbleTree;
 	};
 
 	ChequeadoBubbleTree.render = function(finalData){
-		console.log(finalData);
+		//console.log(finalData);
 		//var styles = _.filter(ChequeadoBubbleTree.RAW_DATA,function(e){return e!=''});
 		//console.log('pala',styles);
+
+		var bubbleStyles = {
+		    /*bubbles: {
+		        'main-bubble': { 
+		        	icon: 'government-uk.svg', 
+		        	color: '#C75746',
+		        	bubbleType: 'icon' 
+		        },
+		        'normal-bubble': { icon: 'defence.svg', color: '#0AB971' }
+		    }*/
+		};
 
 		new BubbleTree({
 			data: finalData,
 			container: '.bubbletree',
-		//	bubbleType: 'icon',
+			bubbleType: ['icon', 'plain', 'donut'],
+			//bubbleStyles: bubbleStyles
 		});
+
+
 
 		setTimeout(function(){
 			$('#loader-container').fadeOut();
 	        $('#button-container').fadeIn();
 	        $('.bubbletree').addClass('loaded');
+		
+			//agregar imagen
+
+			if(ChequeadoBubbleTree.RAW_DATA_CREDITS.imagen){
+		        //find main bubble and append the image
+		        var mainBubble = d3.select('circle.main-bubble');
+				var svg = d3.select("svg");
+
+				//then append the defs and the pattern
+				svg.insert("defs",":first-child")
+					.attr('id','mdef')
+					.append("pattern")
+					.attr('id','image')
+		            .attr("patternUnits", "userSpaceOnUse")
+		            .attr("x", svg.attr('width')/2 - mainBubble.attr('r'))
+		            .attr("y", svg.attr('height')/2 - mainBubble.attr('r'))
+				    .attr("width", mainBubble.attr('r')*2)
+				    .attr("height", mainBubble.attr('r')*2)
+				    .append("svg:image")
+		            .attr("xlink:href", ChequeadoBubbleTree.RAW_DATA_CREDITS.imagen)
+		            .attr("x", 0)
+		            .attr("y", 0)
+				    .attr("width", mainBubble.attr('r')*2)
+				    .attr("height", mainBubble.attr('r')*2);
+
+		        d3.selectAll('circle').each(function(d) {
+			    	if(
+			    		d3.select(this).attr('cx')==mainBubble.attr('cx') &&
+			    		d3.select(this).attr('cy')==mainBubble.attr('cy') &&
+			    		d3.select(this).attr('r') ==mainBubble.attr('r')
+			    	){
+			    		d3.select(this).style("fill", "url(#image)");
+			    	}
+				});
+			}
+
+
 		},1500);
 
 
@@ -111,5 +167,5 @@ var ChequeadoBubbleTree;
     };
 
 
-})(window, document,jQuery, _);
+})(window, document,jQuery, _, d3);
 
