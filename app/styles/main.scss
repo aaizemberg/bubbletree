@@ -73,6 +73,13 @@ $icon-font-path: '../fonts/';
   bottom: 10px;
 }
 
+#detail-container{
+  position: absolute;
+  z-index: 1000;
+  right: 0px;
+  bottom: 0px;
+}
+
 #loader-container{
   position: absolute;
   z-index: 1000;

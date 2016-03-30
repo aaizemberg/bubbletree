@@ -11,6 +11,8 @@ var ChequeadoBubbleTree;
 
     ChequeadoBubbleTree.RAW_DATA=[];
 
+    ChequeadoBubbleTree.details=$('#detail-container');
+
 	ChequeadoBubbleTree.init = function(){
  		var key = ChequeadoBubbleTree.getParam('key');
         if(key){
@@ -94,7 +96,20 @@ var ChequeadoBubbleTree;
 			container: '.bubbletree',
 			bubbleType: ['icon', 'plain', 'donut'],
 			//bubbleStyles: bubbleStyles
-		});
+		}
+		,function(a){
+			//console.log('click',a);
+			ChequeadoBubbleTree.details.render(a);
+		}
+		,function(a){
+			//console.log('hover',a);
+			ChequeadoBubbleTree.details.render(a);
+		}
+		,function(a){
+			//console.log('unhover',a);
+			ChequeadoBubbleTree.details.render({});
+		}
+		);
 
 
 

@@ -611,7 +611,7 @@ vis4color.fromHSI = function(h,s,i, mode) {
 /*jshint undef: true, browser:true, jquery: true, devel: true, smarttabs: true */
 /*global Raphael, TWEEN, vis4, vis4color, vis4loader */
 
-var BubbleTree = function(config, onHover, onUnHover) {
+var BubbleTree = function(config, onClick, onHover, onUnHover) {
 
 	var history = $.history || {
     callback: null,
@@ -654,9 +654,10 @@ var BubbleTree = function(config, onHover, onUnHover) {
 	/*
 	 * this function is called when the user hovers a bubble
 	 */
-	//me.onHover = onHover;
+	me.customOnHover = onHover;
+	me.customOnUnhover = onUnHover;
+	me.customOnClick = onClick;
 
-	//me.onUnHover = onUnHover;
 	me.tooltip = config.tooltipCallback ? config.tooltipCallback : function() {};
 	if (config.tooltip) me.tooltip = config.tooltip;
 
@@ -1903,11 +1904,11 @@ BubbleTree.Utils.formatNumber = function(n) {
 		n = n*-1;
 		prefix = '-';
 	}
-	if (n >= 1000000000000) return prefix+Math.round(n / 100000000000)/10 + 't';
-	if (n >= 1000000000) return prefix+Math.round(n / 100000000)/10 + 'b';
-	if (n >= 1000000) return prefix+Math.round(n / 100000)/10 + ' Millones';
-	if (n >= 1000) return prefix+Math.round(n / 100)/10 + ' mil';
-	else return prefix+n;
+	if (n >= 1000000000000) return '$' + prefix+Math.round(n / 100000000000)/10 + 't';
+	if (n >= 1000000000) return '$' + prefix+Math.round(n / 100000000)/10 + 'b';
+	if (n >= 1000000) return '$' + prefix+Math.round(n / 100000)/10 + ' Millones';
+	if (n >= 1000) return '$' + prefix+Math.round(n / 100)/10 + ' mil';
+	else return '$' + prefix+n;
 	
 };
 
@@ -2014,6 +2015,9 @@ BubbleTree.Bubbles.Plain = function(node, bubblechart, origin, radius, angle, co
 		//if (me.node.children.length > 1) {
 			me.bc.navigateTo(me.node);
 		//}
+		if(me.bc.customOnClick){
+			me.bc.customOnClick(me.node);
+		}
 	};
 
 	me.onhover = function(e) {
@@ -2024,6 +2028,10 @@ BubbleTree.Bubbles.Plain = function(node, bubblechart, origin, radius, angle, co
 		e.mousePos = { x:e.origEvent.pageX - c.offsetLeft, y: e.origEvent.pageY - c.offsetTop };
 		e.type = 'SHOW';
 		me.bc.tooltip(e);
+
+		if(me.bc.customOnHover){
+			me.bc.customOnHover(me.node);
+		}
 	};
 
 	me.onunhover = function(e) {
@@ -2034,6 +2042,10 @@ BubbleTree.Bubbles.Plain = function(node, bubblechart, origin, radius, angle, co
 		e.bubblePos = { x:me.pos.x, y: me.pos.y };
 		e.mousePos = { x:e.origEvent.pageX - c.offsetLeft, y: e.origEvent.pageY - c.offsetTop };
 		me.bc.tooltip(e);
+
+		if(me.bc.customOnUnhover){
+			me.bc.customOnUnhover(me.node);
+		}
 	};
 
 	me.draw = function() {
@@ -2245,6 +2257,10 @@ BubbleTree.Bubbles.Donut = function(node, bubblechart, origin, radius, angle, co
 
 		me.bc.navigateTo(me.node);
 
+		if(me.bc.customOnClick){
+			me.bc.customOnClick(me.node);
+		}
+
 	};
 
 	me.onhover = function(e) {
@@ -2255,6 +2271,10 @@ BubbleTree.Bubbles.Donut = function(node, bubblechart, origin, radius, angle, co
 		e.mousePos = { x:e.origEvent.pageX - c.offsetLeft, y: e.origEvent.pageY - c.offsetTop };
 		e.type = 'SHOW';
 		me.bc.tooltip(e);
+
+		if(me.bc.customOnHover){
+			me.bc.customOnHover(me.node);
+		}
 	};
 
 	me.onunhover = function(e) {
@@ -2265,6 +2285,10 @@ BubbleTree.Bubbles.Donut = function(node, bubblechart, origin, radius, angle, co
 		e.bubblePos = { x:me.pos.x, y: me.pos.y };
 		e.mousePos = { x:e.origEvent.pageX - c.offsetLeft, y: e.origEvent.pageY - c.offsetTop };
 		me.bc.tooltip(e);
+
+		if(me.bc.customOnUnhover){
+			me.bc.customOnUnhover(me.node);
+		}
 	};
 
 	this.draw = function() {
