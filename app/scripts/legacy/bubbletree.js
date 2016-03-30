@@ -1903,8 +1903,8 @@ BubbleTree.Utils.formatNumber = function(n) {
 	}
 	if (n >= 1000000000000) return prefix+Math.round(n / 100000000000)/10 + 't';
 	if (n >= 1000000000) return prefix+Math.round(n / 100000000)/10 + 'b';
-	if (n >= 1000000) return prefix+Math.round(n / 100000)/10 + 'm';
-	if (n >= 1000) return prefix+Math.round(n / 100)/10 + 'k';
+	if (n >= 1000000) return prefix+Math.round(n / 100000)/10 + ' Millones';
+	if (n >= 1000) return prefix+Math.round(n / 100)/10 + ' mil';
 	else return prefix+n;
 	
 };
