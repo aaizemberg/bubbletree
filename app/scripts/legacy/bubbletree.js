@@ -812,7 +812,7 @@ var BubbleTree = function(config, onHover, onUnHover) {
       }
 		}
 		// lighten up the color if there are no children
-		if (node.children.length < 2 && node.color) {
+		if (node.children.length < 1 && node.color) {
 			node.color = vis4color.fromHex(node.color).saturation('*.86').x;
 		}
 
@@ -1087,7 +1087,7 @@ var BubbleTree = function(config, onHover, onUnHover) {
 			for (i in me.displayObjects) me.displayObjects[i].hideFlag = true;
 
 
-			if (node == root || node.parent == root && node.children.length < 2) {
+			if (node == root || node.parent == root && node.children.length < 1) {
 
 				t.$(me).bubbleScale = 1.0;
 
@@ -1123,7 +1123,7 @@ var BubbleTree = function(config, onHover, onUnHover) {
 
 				var origNode = node; // save the reference of the node..
 
-				if (node.children.length < 2) { // ..because if it has no children..
+				if (node.children.length < 1) { // ..because if it has no children..
 					node = node.parent;         // ..we center on its parent
 				}
 
@@ -1391,8 +1391,10 @@ var BubbleTree = function(config, onHover, onUnHover) {
 	me.navigateTo = function(node, fromUrlChange) {
 		// vis4.log('bc.navigateTo(',node,',',fromUrlChange,')');
 		var me = this;
-		if (fromUrlChange) me.changeView(node.urlToken);
-		else history.load(me.getUrlForNode(node));
+		if (fromUrlChange) 
+			me.changeView(node.urlToken);
+		else 
+			history.load(me.getUrlForNode(node));
 		//
 		$('.bubbletree-label, .bubbletree-label2', me.$container).removeClass('current');
 		$('.bubbletree-label2.'+node.id, me.$container).addClass('current');
@@ -2044,8 +2046,10 @@ BubbleTree.Bubbles.Plain = function(node, bubblechart, origin, radius, angle, co
 		if (!me.visible) return;
 
 		me.circle.attr({ cx: me.pos.x, cy: me.pos.y, r: r, 'fill-opacity': me.alpha });
-		if (me.node.children.length > 1) me.dashedBorder.attr({ cx: me.pos.x, cy: me.pos.y, r: r-4, 'stroke-opacity': me.alpha * 0.9 });
-		else me.dashedBorder.attr({ 'stroke-opacity': 0 });
+		if (me.node.children.length > 0) 
+			me.dashedBorder.attr({ cx: me.pos.x, cy: me.pos.y, r: r-4, 'stroke-opacity': me.alpha * 0.9 });
+		else 
+			me.dashedBorder.attr({ 'stroke-opacity': 0 });
 
 
 		//me.label.attr({ x: me.pos.x, y: me.pos.y, 'font-size': Math.max(4, me.bubbleRad * me.bc.bubbleScale * 0.25) });
@@ -2268,8 +2272,10 @@ BubbleTree.Bubbles.Donut = function(node, bubblechart, origin, radius, angle, co
 		if (!me.visible) return;
 
 		me.circle.attr({ cx: x, cy: y, r: r, 'fill-opacity': me.alpha });
-		if (me.node.children.length > 1) me.dashedBorder.attr({ cx: x, cy: y, r: r*0.85, 'stroke-opacity': me.alpha * 0.8 });
-		else me.dashedBorder.attr({ 'stroke-opacity': 0 });
+		if (me.node.children.length > 0) 
+			me.dashedBorder.attr({ cx: x, cy: y, r: r*0.85, 'stroke-opacity': me.alpha * 0.8 });
+		else 
+			me.dashedBorder.attr({ 'stroke-opacity': 0 });
 
 		if (me.breakdown.length > 1) {
 			// draw breakdown chart
@@ -2355,7 +2361,7 @@ BubbleTree.Bubbles.Donut = function(node, bubblechart, origin, radius, angle, co
 		me.label = $('<div class="bubbletree-label '+me.node.id+'"><div class="bubbletree-amount">'+utils.formatNumber(me.node.amount)+'</div><div class="bubbletree-desc">'+me.node.shortLabel+'</div></div>');
 		me.bc.$container.append(me.label);
 
-		if (me.node.children.length > 1) {
+		if (me.node.children.length > 0) {
 			$(me.circle.node).css({ cursor: 'pointer'});
 			$(me.label).css({ cursor: 'pointer'});
 		}
@@ -2670,8 +2676,10 @@ BubbleTree.Bubbles.Icon = function(node, bubblechart, origin, radius, angle, col
 		if(me.overlay)
 			me.overlay.attr({ cx: x, cy: y, r: Math.max(10,r)});
 
-		if (me.node.children.length > 1) me.dashedBorder.attr({ cx: me.pos.x, cy: me.pos.y, r: Math.min(r-3, r-4), 'stroke-opacity': me.alpha * 0.9 });
-		else me.dashedBorder.attr({ 'stroke-opacity': 0 });
+		if (me.node.children.length > 0) 
+			me.dashedBorder.attr({ cx: me.pos.x, cy: me.pos.y, r: Math.min(r-3, r-4), 'stroke-opacity': me.alpha * 0.9 });
+		else 
+			me.dashedBorder.attr({ 'stroke-opacity': 0 });
 
 
 		//me.label.attr({ x: me.pos.x, y: me.pos.y, 'font-size': Math.max(4, me.bubbleRad * me.bc.bubbleScale * 0.25) });
