@@ -39,10 +39,13 @@
       Cargando <br/> <img src="images/spin.gif">
     </div>
 
-    <div id="detail-container">
-      <p class="text-right"><strong data-bind="famount"></strong></p>
-      <p class="text-right" data-bind="label"></p>
-      <p class="text-right" data-bind="puesto"></p>
+    <div id="detail-container-template">
+        <div id="detail-container" class="colorin">
+            <div class="detail-inner" class="colorin">
+              <p class="text-center"><strong data-bind="famount"></strong></p>
+              <p class="text-center"><span data-bind="label"></span> - <strong data-bind="puesto"></strong></p>
+            </div>
+        </div>
     </div>
 
     <div class="bubbletree-wrapper">

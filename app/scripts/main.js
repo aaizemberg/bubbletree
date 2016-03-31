@@ -11,7 +11,7 @@ var ChequeadoBubbleTree;
 
     ChequeadoBubbleTree.RAW_DATA=[];
 
-    ChequeadoBubbleTree.details=$('#detail-container');
+    ChequeadoBubbleTree.details=$('#detail-container-template');
 
     ChequeadoBubbleTree.titles=$('#titles-container');
 
@@ -103,14 +103,28 @@ var ChequeadoBubbleTree;
 		}
 		,function(a){
 			//console.log('click',a);
-			ChequeadoBubbleTree.details.render(a);
+			var directives = {
+			  colorin: {
+			    style: function(params) {
+			      return 'background-color:'+this.color;
+			    }
+			  }
+			};
+			ChequeadoBubbleTree.details.render(a,directives);
 			/*setTimeout(function(){
 				ChequeadoBubbleTree.updateImage();
 			},1000)*/
 		}
 		,function(a){
 			//console.log('hover',a);
-			ChequeadoBubbleTree.details.render(a);
+			var directives = {
+			  colorin: {
+			    style: function(params) {
+			      return 'background-color:'+this.color;
+			    }
+			  }
+			};
+			ChequeadoBubbleTree.details.render(a,directives);
 		}
 		,function(a){
 			//console.log('unhover',a);

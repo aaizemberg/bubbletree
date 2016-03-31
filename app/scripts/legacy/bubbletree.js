@@ -2085,8 +2085,6 @@ BubbleTree.Bubbles.Plain = function(node, bubblechart, origin, radius, angle, co
 		me.label.css({ width: 2*r+'px', opacity: me.alpha });
 		me.label.css({ left: (me.pos.x-r)+'px', top: (me.pos.y-me.label.height()*0.5)+'px' });
 
-		console.log(ox,oy,me);
-
 		var w = Math.max(70, 3*r);
 		me.label2.css({ width: w+'px', opacity: me.alpha });
 		me.label2.css({ left: (x - w*0.5)+'px', top: (y + r)+'px' });
