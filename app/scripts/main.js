@@ -104,6 +104,9 @@ var ChequeadoBubbleTree;
 		,function(a){
 			//console.log('click',a);
 			ChequeadoBubbleTree.details.render(a);
+			/*setTimeout(function(){
+				ChequeadoBubbleTree.updateImage();
+			},1000)*/
 		}
 		,function(a){
 			//console.log('hover',a);
@@ -135,31 +138,53 @@ var ChequeadoBubbleTree;
 					.append("pattern")
 					.attr('id','image')
 		            .attr("patternUnits", "userSpaceOnUse")
-		            .attr("x", svg.attr('width')/2 - mainBubble.attr('r'))
+		            /*.attr("x", svg.attr('width')/2 - mainBubble.attr('r'))
 		            .attr("y", svg.attr('height')/2 - mainBubble.attr('r'))
 				    .attr("width", mainBubble.attr('r')*2)
-				    .attr("height", mainBubble.attr('r')*2)
+				    .attr("height", mainBubble.attr('r')*2)*/
 				    .append("svg:image")
 		            .attr("xlink:href", ChequeadoBubbleTree.RAW_DATA_CREDITS.imagen)
-		            .attr("x", 0)
+		            /*.attr("x", 0)
 		            .attr("y", 0)
 				    .attr("width", mainBubble.attr('r')*2)
-				    .attr("height", mainBubble.attr('r')*2);
+				    .attr("height", mainBubble.attr('r')*2);*/
 
-		        d3.selectAll('circle').each(function(d) {
-			    	if(
-			    		d3.select(this).attr('cx')==mainBubble.attr('cx') &&
-			    		d3.select(this).attr('cy')==mainBubble.attr('cy') &&
-			    		d3.select(this).attr('r') ==mainBubble.attr('r')
-			    	){
-			    		d3.select(this).style("fill", "url(#image)");
-			    	}
-				});
+				    ChequeadoBubbleTree.updateImage();
+
 			}
 
 
 		},1500);
 
+
+	};
+
+	ChequeadoBubbleTree.updateImage = function(){
+
+		var image = d3.select('#image');
+		var mainBubble = d3.select('circle.main-bubble');
+		var svg = d3.select("svg");
+
+		image.attr("x", svg.attr('width')/2 - mainBubble.attr('r'))
+        	.attr("y", svg.attr('height')/2 - mainBubble.attr('r'))
+		    .attr("width", mainBubble.attr('r')*2)
+		    .attr("height", mainBubble.attr('r')*2);
+
+		image.select('image')
+			.attr("x", 0)
+        	.attr("y", 0)
+		    .attr("width", mainBubble.attr('r')*2)
+		    .attr("height", mainBubble.attr('r')*2);
+
+		d3.selectAll('circle').each(function(d) {
+	    	if(
+	    		d3.select(this).attr('cx')==mainBubble.attr('cx') &&
+	    		d3.select(this).attr('cy')==mainBubble.attr('cy') &&
+	    		d3.select(this).attr('r') ==mainBubble.attr('r')
+	    	){
+	    		d3.select(this).style("fill", "url(#image)");
+	    	}
+		});
 
 	};
 
