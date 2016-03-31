@@ -117,3 +117,12 @@ body {
 #credits {
   z-index: 999999;
 }
+
+.main-bubble{
+  .bubbletree-amount{
+    display: none !important;
+  }
+  .bubbletree-desc{
+    display: none !important; 
+  }
+}
