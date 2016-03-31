@@ -13,6 +13,8 @@ var ChequeadoBubbleTree;
 
     ChequeadoBubbleTree.details=$('#detail-container');
 
+    ChequeadoBubbleTree.titles=$('#titles-container');
+
 	ChequeadoBubbleTree.init = function(){
  		var key = ChequeadoBubbleTree.getParam('key');
         if(key){
@@ -48,6 +50,8 @@ var ChequeadoBubbleTree;
 		};
 
 		$('.modal').render(ChequeadoBubbleTree.RAW_DATA_CREDITS,directives);
+
+		ChequeadoBubbleTree.titles.render(ChequeadoBubbleTree.RAW_DATA_CREDITS);
 
 		var finalData = ChequeadoBubbleTree.RAW_DATA[0];
 
