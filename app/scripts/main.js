@@ -51,7 +51,7 @@ var ChequeadoBubbleTree;
 
 		$('.modal').render(ChequeadoBubbleTree.RAW_DATA_CREDITS,directives);
 
-		ChequeadoBubbleTree.titles.render(ChequeadoBubbleTree.RAW_DATA_CREDITS);
+		ChequeadoBubbleTree.titles.render(ChequeadoBubbleTree.RAW_DATA_CREDITS,{});
 
 		var finalData = ChequeadoBubbleTree.RAW_DATA[0];
 
@@ -98,7 +98,7 @@ var ChequeadoBubbleTree;
 		new BubbleTree({
 			data: finalData,
 			container: '.bubbletree',
-			bubbleType: ['icon', 'plain', 'donut'],
+			bubbleType: ['icon', 'plain', 'donut']
 			//bubbleStyles: bubbleStyles
 		}
 		,function(a){
