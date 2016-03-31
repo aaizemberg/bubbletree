@@ -2015,7 +2015,7 @@ BubbleTree.Bubbles.Plain = function(node, bubblechart, origin, radius, angle, co
 		//if (me.node.children.length > 1) {
 			me.bc.navigateTo(me.node);
 		//}
-		if(me.bc.customOnClick){
+		if($.isFunction(me.bc.customOnClick)){
 			me.bc.customOnClick(me.node);
 		}
 	};
@@ -2029,7 +2029,7 @@ BubbleTree.Bubbles.Plain = function(node, bubblechart, origin, radius, angle, co
 		e.type = 'SHOW';
 		me.bc.tooltip(e);
 
-		if(me.bc.customOnHover){
+		if($.isFunction(me.bc.customOnHover)){
 			me.bc.customOnHover(me.node);
 		}
 	};
@@ -2043,7 +2043,7 @@ BubbleTree.Bubbles.Plain = function(node, bubblechart, origin, radius, angle, co
 		e.mousePos = { x:e.origEvent.pageX - c.offsetLeft, y: e.origEvent.pageY - c.offsetTop };
 		me.bc.tooltip(e);
 
-		if(me.bc.customOnUnhover){
+		if($.isFunction(me.bc.customOnUnhover)){
 			me.bc.customOnUnhover(me.node);
 		}
 	};

@@ -123,6 +123,8 @@ var ChequeadoBubbleTree;
 		setTimeout(function(){
 			$('#loader-container').fadeOut();
 	        $('#button-container').fadeIn();
+	        $('#titles-container').fadeIn();
+	        
 	        $('.bubbletree').addClass('loaded');
 		
 			//agregar imagen
