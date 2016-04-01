@@ -611,7 +611,7 @@ vis4color.fromHSI = function(h,s,i, mode) {
 /*jshint undef: true, browser:true, jquery: true, devel: true, smarttabs: true */
 /*global Raphael, TWEEN, vis4, vis4color, vis4loader */
 
-var BubbleTree = function(config, onClick, onHover, onUnHover) {
+var BubbleTree = function(config, onClick, onHover, onUnHover, onUrlChange) {
 
 	var history = $.history || {
     callback: null,
@@ -657,6 +657,7 @@ var BubbleTree = function(config, onClick, onHover, onUnHover) {
 	me.customOnHover = onHover;
 	me.customOnUnhover = onUnHover;
 	me.customOnClick = onClick;
+	me.customUrlChange = onUrlChange;
 
 	me.tooltip = config.tooltipCallback ? config.tooltipCallback : function() {};
 	if (config.tooltip) me.tooltip = config.tooltip;
@@ -1365,6 +1366,8 @@ var BubbleTree = function(config, onClick, onHover, onUnHover) {
 		} else {
 			me.changeUrl();
 		}
+		me.customUrlChange(me.treeRoot.urlToken,hash);
+
 	};
 
 	/*
