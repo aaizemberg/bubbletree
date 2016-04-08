@@ -44,7 +44,7 @@ var ChequeadoBubbleTree;
 		      return this.data;
 		    },
 		    html: function(params) {
-		      return 'En Planilla';
+		      return 'en planilla';
 		    }
 		  }
 		};
